@@ -357,13 +357,13 @@ class AppComponent extends React.Component {
 
 		*/
 
-
 		const xhr = new XMLHttpRequest();
+
 		const api = '9bfc480cf5eba264ab04e7d23c97110b';
 
 
 		/*
-			I am opening up a new request using the XML.
+			I am opening/intializing up a new request using the XML.
 
 			I  shorten it to xhr, so I don't have to keep typing XMLblahblah for
 
@@ -466,8 +466,66 @@ class AppComponent extends React.Component {
 
 			
 		*/
-		xhr.open('GET','api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=metric&APPID='+api, true);
+		xhr.open('GET','http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=metric&APPID='+api, true);
 
+
+		/*
+
+			Alright, I'm doing a couple of things here. 
+			
+			I'll break it down step by step.
+
+
+			First, we're going to use the XML onload method.
+
+			This method actually sends out the request that was opened in the code above.
+
+
+			
+
+		*/
+
+		xhr.onload = function(){
+			if(xhr.status >=200 && xhr.status < 400){
+				/*
+					If the status of the data coming back is greater than 200 (200 = perfect)
+
+					but less than 400 (400+ is errors, 300+ is routing), then we'll 
+
+					save that data (Which in this case is the xhr.responseText) 
+
+					into a variable called data... 
+
+
+					We know that the data coming in is in
+
+					JSON format (Touch up on that on google), so we parse it using 
+
+					JSON.parse() method. 
+
+
+					This gives us easier control of it when we want to 
+
+					explore the data. 
+
+				*/
+
+				var data = JSON.parse(xhr.responseText);
+				console.log('we got the local weather data');
+				console.log(data);
+
+				localStorage.setItem('localWeather',JSON.stringify(data));
+
+			} else {
+				console.log('Not working ' + xhr.status);
+			}
+		};
+
+		xhr.onerror = function(){
+			console.log('there was an error');
+		};
+
+		xhr.send(null);
 
 	}
 
