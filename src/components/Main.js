@@ -96,7 +96,7 @@ class AppComponent extends React.Component {
 
 				*/
 
-				console.log(date.getMinutes());	
+				console.log(date.getMinutes());	/* This will show the minutes into the console  */
 
 				/*
 					If the minutes are divisible by 10 is what this
@@ -278,7 +278,182 @@ class AppComponent extends React.Component {
 		} 
 	}
 
-	compoentDidMount(){
+	componentDidMount(){
+
+			/*
+				Here we are going to call the data from the open weather api. 
+
+				I am going to call this using straight javascript. 
+
+				There are other methods but straight javascript needs to
+
+				be done, so you guys can see how it's done. 
+
+
+				...Malik, if you're reading this. 
+
+
+							I hate you. :|
+
+
+
+			
+				We'll make the const lon and lat, and have their values
+
+				be whatever is in the localStorage. 
+
+				I should do it by checking the this.state but for some reason,
+
+				it's acting weird. 
+
+			*/
+
+		const lon = localStorage.getItem('localLon');
+		const lat = localStorage.getItem('localLat');
+
+
+		console.log('Here in the componentDidMount()');
+
+		console.log(lon,lat);
+
+
+		
+		/*
+			Javascript has had their own version of a http request for a while.
+
+			The annoying thing is that you kinda have to manually set it up...
+
+			Since a lot of people ignore this, thats where the other frameworks
+
+			came up and helped reduce the amount of code. 
+
+
+
+			Jquery has AJAX, Angular has its $http module, and React has a couple
+
+			that you have to install through NPM. 
+
+
+
+			One thing I have heard is a performance. If you're using another library
+
+			to request your data, then what it's doing is first looking at the methods,
+
+			then it searches through its library for that method. Then configures the
+
+			Http request, then it finally gets the data.
+
+
+			If we do vanilla (bare-bone, no library/framework) javascript, we reduce 
+
+			the amount of time our code to go through to get the data since we are 
+
+			already configuring the request to our liking.  
+
+
+			Since this is vanilla Javascript, we're going to be using
+
+			Javascript's XMLHttpRequest API.
+
+		*/
+
+
+		const xhr = new XMLHttpRequest();
+		const api = '9bfc480cf5eba264ab04e7d23c97110b';
+
+
+		/*
+			I am opening up a new request using the XML.
+
+			I  shorten it to xhr, so I don't have to keep typing XMLblahblah for
+
+			every time I need to do something with a http request.
+
+
+			So what this function below is saying, is...
+
+			xhr.open(GET or POST,'URL',ASYNC);
+
+			GET and POST are something essential to learn about when calling in 
+
+			data from a server. 
+
+
+			GET is Getting the data, which also leaves your parameters exposed on
+
+			your URL. This is why you're able to send someone a link to a 
+
+			particular location in google maps... The data is being transfered in the 
+
+			URL. 
+
+
+			POST is different. POST, is your Posting your data. This is useful when
+
+			you're dealing with a CRUD (Create, Remove, Update, Delete) app aka blogs.
+
+			The data will be transfered not through the url, A good example of this is
+
+			Gmail. You can't really link someone to your email just by copy and pasting 
+
+			your current URL. It won't work. 
+
+
+
+			The URL portion is the API url. This is where we are using our GET to get our data.
+
+			However, I changed the url to add the longitude and latitude values, giving us the
+
+			local weather data. It's also going to give back the units in the metric system. 
+
+
+			I'll make a function that converts celisus to farenheit (... Yeah, it's like 3 am,
+
+			I'm not going to take the extra time to spell check that...). 
+
+
+
+			The ASYNC part, stands for asynctronization. I suggest you coming up to me on 
+
+			face book and asking me about it, but if you don't have the time.... 
+
+
+			It keeps your code flowing while keeping tabs on other stuff. 
+
+			Like lets say you're at home, taking care of your kid, Malik. 
+
+			And you want a beer from the fridge, however you cannot get to the fridge. (Starting HTTP request)
+
+			So your ask your wife like "Yo, babe, Can you get me a beer from the fridge?", (Asking for the data)
+
+			And she's like "Yeah sure." because she knows the baby has you pinned.  (Http Status 200 aka ALRIGHT WE'RE IN BUSINESS),
+
+			But during this time, you're texting me and being all like "Yeah, you know Oscar you suck because you're so awesome." (Doing a function while waiting for the data)
+
+			Then she brings you the beer (Data received).
+
+
+			You're waiting for the beer (Async http get function), but you're still able to text me (Continue code process while waiting for the data).
+
+
+			You can also expand on this by the use of promises. 
+
+			Promises are like "Hold on, let me check for you real quick" when you're at the store and asking the guy
+
+			if they got that thing in stock. 
+
+
+			Javascript (RIGHT NOW AS OF 12/18) doesn't have a native Promise api (That I know of), but do check it out.
+
+
+			
+
+
+
+			
+		*/
+		xhr.open('GET','api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=metric&APPID='+api, true);
+
 
 	}
 
