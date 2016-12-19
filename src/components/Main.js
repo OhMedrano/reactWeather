@@ -422,28 +422,42 @@ class AppComponent extends React.Component {
 
 			Like lets say you're at home, taking care of your kid, Malik. 
 
-			And you want a beer from the fridge, however you cannot get to the fridge. (Starting HTTP request)
+			And you want a beer from the fridge, however you cannot get to the fridge. (Starting 
 
-			So your ask your wife like "Yo, babe, Can you get me a beer from the fridge?", (Asking for the data)
+			HTTP request)
 
-			And she's like "Yeah sure." because she knows the baby has you pinned.  (Http Status 200 aka ALRIGHT WE'RE IN BUSINESS),
+			So your ask your wife like "Yo, babe, Can you get me a beer from the fridge?", (Asking 
 
-			But during this time, you're texting me and being all like "Yeah, you know Oscar you suck because you're so awesome." (Doing a function while waiting for the data)
+			for the data)
+
+			And she's like "Yeah sure." because she knows the baby has you pinned.  (Http Status 200 
+
+			aka ALRIGHT WE'RE IN BUSINESS),
+
+			But during this time, you're texting me and being all like "Yeah, you know Oscar 
+
+			you suck because you're so awesome." (Doing a function while waiting for the data)
 
 			Then she brings you the beer (Data received).
 
 
-			You're waiting for the beer (Async http get function), but you're still able to text me (Continue code process while waiting for the data).
+			You're waiting for the beer (Async http get function), but you're still able to 
+
+			text me (Continue code process while waiting for the data).
 
 
 			You can also expand on this by the use of promises. 
 
-			Promises are like "Hold on, let me check for you real quick" when you're at the store and asking the guy
+			Promises are like "Hold on, let me check for you real quick" when you're at the
 
-			if they got that thing in stock. 
+			store and asking the guy if they got that thing in stock. If it doesn't find it,
+
+			then it will return with "Sorry dude", if it does "Iiiiight".
 
 
-			Javascript (RIGHT NOW AS OF 12/18) doesn't have a native Promise api (That I know of), but do check it out.
+			Javascript (RIGHT NOW AS OF 12/18) doesn't have a native Promise api (That I know of),
+
+			but do check it out.
 
 
 			
